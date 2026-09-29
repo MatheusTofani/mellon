@@ -1,4 +1,4 @@
-namespace Mellon.Domain.ValueObjects.Identity;
+namespace Mellon.Domain.ValueObjects;
 
 using Mellon.Domain.Errors;
 

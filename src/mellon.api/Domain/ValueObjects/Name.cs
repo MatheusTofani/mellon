@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
 using Mellon.Domain.Errors;
 
-namespace Mellon.Domain.ValueObjects.Identity;
+namespace Mellon.Domain.ValueObjects;
 
 public sealed partial record Name
 {
