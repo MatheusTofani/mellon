@@ -1,3 +1,5 @@
+using Mellon.Domain.Entities;
+using Mellon.Domain.ValueObjects;
 using Mellon.Infrastructure.Storage.MongoDB;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -18,6 +20,23 @@ public class SalonMongoDocument : MellonMongoDocument
 
     public override string CollectionName => CollectionNameStatic;
     public static string CollectionNameStatic => "Salon";
+
+    public static SalonMongoDocument FromDomain(Salon salon) => new()
+    {
+        Id = string.IsNullOrEmpty(salon.Id) ? ObjectId.Empty : ParseObjectId(salon.Id),
+        Name = salon.Name,
+        Cnpj = salon.Cnpj,
+        Email = salon.Email,
+        Phone = salon.Phone,
+        CreatedAt = DateTime.UtcNow
+    };
+
+    public Salon ToDomain() => Salon.Restore(
+        Id.ToString(),
+        new Name(Name),
+        new Cnpj(Cnpj),
+        new Email(Email),
+        new Phone(Phone));
 
     public override async Task WriteIndexes(IMongoDatabase database)
     {

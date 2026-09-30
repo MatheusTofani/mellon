@@ -10,16 +10,16 @@ namespace Mellon.Api.Controllers.SalonController;
 [ApiController]
 [Route("api/[controller]")]
 public class SalonController(
-     IUseCase<Task<Salon>, CreateSalonInput> createSalon,
+     IUseCase<Task<Salon>, CreateSalonInput> createSalon
    )
     : ControllerBase
 {
 
     [HttpPost]
-    public async Task<SupportTicketResponse> Create([FromBody] CreateSupportTicketRequest request)
+    public async Task<SalonResponse> Create([FromBody] CreateSalonRequest request)
     {
-        var ticket = await createSupportTicket.Execute(request.ToInput());
-        return SupportTicketResponse.FromDomain(ticket);
+        var salon = await createSalon.Execute(request.ToInput());
+        return SalonResponse.FromDomain(salon);
     }
 
 }

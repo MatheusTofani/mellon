@@ -26,6 +26,9 @@ public class Salon
     public Address Address { get; private set; }
     public Phone Phone { get; private set; }
 
+    public static Salon Restore(string id, Name name, Cnpj cnpj, Email email, Phone phone) =>
+        new(id, name, cnpj, email, phone);
+
     public static Salon Create(
         Name name,
         Cnpj cnpj,
