@@ -10,13 +10,12 @@ public class Salon
             Name name,
             Cnpj cnpj,
             Email email,
-            Address address,
             Phone phone
     )
     {
         Id = id; Name = name;
         Cnpj = cnpj;
-        Email = email; Address = address;
+        Email = email; 
         Phone = phone;
     }
 
@@ -28,14 +27,19 @@ public class Salon
     public Phone Phone { get; private set; }
 
     public static Salon Create(
-            string id,
-            Name name,
-            Cnpj cnpj,
-            Email email,
-            Address address,
-            Phone phone
+        Name name,
+        Cnpj cnpj,
+        Email email,
+        Phone phone
     )
     {
-        return new Salon(id, name, cnpj, email, address, phone);
+
+        return new Salon(
+            id: string.Empty,
+            name: name,
+            cnpj: cnpj,
+            email: email,
+            phone: phone
+            );
     }
 }
