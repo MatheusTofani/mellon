@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Mellon API",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/mellon.api/bin/Debug/net8.0/mellon.api.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/mellon.api",
+      "stopAtEntry": false,
+      "console": "internalConsole",
+      "launchSettingsProfile": "http",
+      "envFile": "${workspaceFolder}/.env",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5152"
+      },
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+        "uriFormat": "%s/swagger"
+      }
+    }
+  ]
+}

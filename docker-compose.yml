@@ -1,0 +1,45 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: mellon-mongodb
+    restart: unless-stopped
+
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mellon_admin
+      MONGO_INITDB_ROOT_PASSWORD: bmJ1KiKem3410jKaD
+      MONGO_INITDB_DATABASE: mellon_development
+
+    ports:
+      - "40405:27017"
+
+    volumes:
+      - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
+
+    networks:
+      - mellon-network
+
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+    command: mongod --auth
+
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
+
+volumes:
+  mongodb_data:
+    driver: local
+
+  mongodb_config:
+    driver: local
+
+networks:
+  mellon-network:
+    driver: bridge
